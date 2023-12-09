@@ -1,5 +1,5 @@
 <!-- @format -->
 
-# Azure-Loadbalancer-Vmss
+# Azure-Loadbalancer-Vmss.
 
 ![alt](/images/ecom-altsc.png)
