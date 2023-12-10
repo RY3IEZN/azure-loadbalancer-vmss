@@ -1,5 +1,12 @@
 <!-- @format -->
 
+Here is the steps we are going to follow
+
+1. Create a Vnet
+1. Create a loadbalancer with an empty backendpool
+1. Create a Virtual Machine Scale and add to the backend pool
+1. Test out the loadbalancer
+
 # A. Create a Virtual Network
 
 Head over to the console and search for virtual network, so that we create a custom vpc, click create
@@ -18,7 +25,21 @@ When done click on "Review+create" and we should ave our Vnet ready
 
 ![alt](/images/azalbvnet6.png)
 
-# C. Test out the loadbalancer
+# B. Create a loadbancer
+
+We will be using a loadbalancer to distribute the traffic between the virtual machines
+
+on the console dearch for loadbalancer and click create
+
+![alt](/images/azalb1.png)
+
+Select loadbalancer type and click create
+
+![alt](/images/azalb2.png)
+
+# C. Create a VMSS
+
+# D. Test out the loadbalancer
 
 Now that we have everything set up we can now go ahead and test out the loadbalancer
 
