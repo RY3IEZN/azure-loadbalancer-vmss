@@ -1,5 +1,23 @@
 <!-- @format -->
 
+# A. Create a Virtual Network
+
+Head over to the console and search for virtual network, so that we create a custom vpc, click create
+
+![alt](/images/azalbvnet1.png)
+
+Starting at this point we would also create our resource group which we will use to keep all our resources in, give your vpc a name, select your desired region and procced
+
+![alt](/images/azalbvnet2.png)
+
+You can skip the "Security" tab as we are not yet going to use Firewalls/DDos protection, however on the IP Address tab, we can set up the cidr block and the subnets. we need 2 subnets 1 for the vm and 1 for the gateway
+
+![alt](/images/azalbvnet4.png)
+
+When done click on "Review+create" and we should ave our Vnet ready
+
+![alt](/images/azalbvnet6.png)
+
 # C. Test out the loadbalancer
 
 Now that we have everything set up we can now go ahead and test out the loadbalancer
@@ -15,3 +33,9 @@ we can now go ahead and open the ipaddress of the loadbalancer on our browser
 We can see the hostname of one of the vm in the vmss, now refresh until you see the hostname of the other vm
 
 ![alt](/images/azalbtest3.png)
+
+Great, our loadbalancer is working, and evenly distributing traffic between each vm and more as it scales up in the vmss
+
+Enjoy!!!
+
+🚧🚧🚧Dont forget to delete all your resources when you are done!🚧🚧🚧
