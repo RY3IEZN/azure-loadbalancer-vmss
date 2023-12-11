@@ -4,7 +4,7 @@ Here is the steps we are going to follow
 
 1. Create a Vnet
 1. Create a loadbalancer with an empty backendpool
-1. Create a Virtual Machine Scale and add to the backend pool
+1. Create a Virtual Machine Scale set and add to the backend pool
 1. Test out the loadbalancer
 
 # A. Create a Virtual Network
@@ -21,15 +21,13 @@ You can skip the "Security" tab as we are not yet going to use Firewalls/DDos pr
 
 ![alt](/images/azalbvnet4.png)
 
-When done click on "Review+create" and we should ave our Vnet ready
+When done click on "Review+create" and we should have our Vnet ready
 
 ![alt](/images/azalbvnet6.png)
 
 # B. Create a loadbancer
 
-We will be using a loadbalancer to distribute the traffic between the virtual machines
-
-on the console dearch for loadbalancer and click create
+We will be using a loadbalancer to distribute the traffic between the virtual machines on the console search for loadbalancer and click create
 
 ![alt](/images/azalb1.png)
 
@@ -85,7 +83,7 @@ Once its up, click on the frontend configuration and then we can see the ip addr
 
 # C. Create a VMSS
 
-Here we ar goint to set up a virtual machine scale set, this will help us manage the scaling in and scaling out of our vm when the high/less traffic
+Here we are going to set up a virtual machine scale set, this will help us manage the scaling in and scaling out of our vm when the high/less traffic
 
 Head over to the console and search for vmss
 
@@ -107,7 +105,7 @@ as for the loadbalncer section, we will azure loadbalancer and select the loadba
 
 ![alt](/images/azvmss3b.png)
 
-The next tag is for handling autoscaling, here are the metrics we are going to use to hand scaling
+The next tab is for handling autoscaling, here are the metrics we are going to use to hand scaling
 
 - intial count = 2
 - scaling policy = custom
