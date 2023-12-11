@@ -37,7 +37,65 @@ Select loadbalancer type and click create
 
 ![alt](/images/azalb2.png)
 
+Here we will set the specifications of the type of loadbalancer the tier
+
+- sku - standard
+- type - public
+- tier - regional
+
+![alt](/images/azalb3.png)
+
+next give the loadbalancer a public ip
+
+![alt](/images/azalb4.png)
+
+The next step is to create a backend pool, so click on "add a backpool"
+
+![alt](/images/azalb5a.png)
+
+So, Select the virtual network we created and set the backend pool configuration to select available NIC,
+
+As earlier mentioned, we will create an empty backend pool and later attach the vmss to it.
+
+NB: This will help the loadbalancer to direct traffic to the new instances as the vmss scales out
+
+![alt](/images/azalb5b.png)
+
+next we create the inbound and outbounds rules, think of the rules as listeners and how it routes traffic to the pools.
+
+for the inbound rules here are the specifications to use (the initial values are sometimes autofilled but can be changed)
+
+- ip version - ipv4
+- protocol - TCP
+- Port - 80
+- backend port
+- session persistence - none
+
+![alt](/images/azalb6.png)
+
+for the outbound rules, the outbounds rules are used for the SNAT for backend (for the vms to be access the internet)
+
+![alt](/images/azalb7.png)
+
+Once done, go ahead click "review+create" and create the Loadbalancer
+
+Once its up, click on the frontend configuration and then we can see the ip address of the loadbalancer
+
+![alt](/images/azalb9.png)
+
 # C. Create a VMSS
+
+Here we ar goint to set up a virtual machine scale set, this will help us manage the scaling in and scaling out of our vm when the high/less traffic
+
+Head over to the console and search for vmss
+
+![alt](/images/azvmss.png)
+
+select the desired region and select 2 or more availibility zone, this will help us achieve HA
+
+![alt](/images/azvmss2a.png)
+
+for the orchestration mode we will set it to uniform
 
 # D. Test out the loadbalancer
 
