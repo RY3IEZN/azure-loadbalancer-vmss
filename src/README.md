@@ -95,7 +95,40 @@ select the desired region and select 2 or more availibility zone, this will help
 
 ![alt](/images/azvmss2a.png)
 
-for the orchestration mode we will set it to uniform
+for the orchestration mode we will set it to "uniform" mode and choose the os and size with username and password
+
+![alt](/images/azvmss2b.png)
+
+for the networking, select the custom vpc we created and set the nic to not have public ip
+
+![alt](/images/azvmss3a.png)
+
+as for the loadbalncer section, we will azure loadbalancer and select the loadbalancer and the backend pool we created earlier
+
+![alt](/images/azvmss3b.png)
+
+The next tag is for handling autoscaling, here are the metrics we are going to use to hand scaling
+
+- intial count = 2
+- scaling policy = custom
+- Min no of instance = 2
+- max no of instance = 3
+- Scale out when cpu utilisation is 90% for 30mins
+- no of instance to add = 1
+
+![alt](/images/azvmss4.png)
+
+Nothing to do at the management tap to skip to health and enable application health check
+
+![alt](/images/azvmss5.png)
+
+For the advance tab, scroll down to user data and input the custom template and then click "review+create"
+
+![alt](/images/azvmss6.png)
+
+Once thats done we should see our vms with 2 already running
+
+![alt](/images/azvmss7.png)
 
 # D. Test out the loadbalancer
 
