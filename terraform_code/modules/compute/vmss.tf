@@ -1,13 +1,16 @@
+# ---compute/vmss.tf---
+
 locals {
-  first_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+wWK73dCr+jgQOAxNsHAnNNNMEMWOHYEccp6wJm2gotpr9katuF/ZAdou5AaW1C61slRkHRkpRRX9FA9CYBiitZgvCCz+3nWNN7l/Up54Zps/pHWGZLHNJZRYyAB6j5yVLMVHIHriY49d/GZTZVNB8GoJv9Gakwc/fuEZYYl4YDFiGMBP///TzlI4jhiJzjKnEvqPFki5p2ZRJqcbCiF4pJrxUQR/RXqVFQdbRLZgYfJ8xGB878RENq3yQ39d8dVOkq4edbkzwcUmwwwkYVPIoDGsYLaRHnG+To7FvMeyO7xDVQkMKzopTQV8AuKpyvpqu0a9pWOMaiCyDytO7GGN you@me.com"
+  first_public_key = ""
+
 }
 
-resource "azurerm_linux_virtual_machine_scale_set" "az_alv_vmss" {
+resource "azurerm_linux_virtual_machine_scale_set" "az_alb_vmss" {
   name                = "azalbvmss"
   resource_group_name = var.rg_name
   location            = var.rg_location
   sku                 = "Standard_B1s"
-  instances           = 2
+  instances           = 3
   admin_username      = "adminuser"
 
   admin_ssh_key {
@@ -32,9 +35,10 @@ resource "azurerm_linux_virtual_machine_scale_set" "az_alv_vmss" {
     primary = true
 
     ip_configuration {
-      name      = "internal"
-      primary   = true
-      subnet_id = var.public_subnet_id
+      name                                   = "internal"
+      primary                                = true
+      subnet_id                              = var.public_subnet_id
+      load_balancer_backend_address_pool_ids = [var.azurerm_lb_backend_address_pool_id]
     }
   }
 
@@ -42,4 +46,5 @@ resource "azurerm_linux_virtual_machine_scale_set" "az_alv_vmss" {
     force_deletion_enabled = true
   }
 
+  user_data = base64encode(file(var.user_data))
 }

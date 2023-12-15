@@ -11,10 +11,18 @@ module "networking" {
 }
 
 module "compute" {
-  source           = "./modules/compute"
-  public_subnet_id = module.networking.public_subnet_id
-  rg_name          = module.resource_group.rg_name
-  rg_location      = module.resource_group.rg_location
+  source                             = "./modules/compute"
+  public_subnet_id                   = module.networking.public_subnet_id
+  rg_name                            = module.resource_group.rg_name
+  rg_location                        = module.resource_group.rg_location
+  azurerm_lb_backend_address_pool_id = module.loadbalancer.azurerm_lb_backend_address_pool_id
+  user_data                          = "userdata.tpl"
+}
+
+module "loadbalancer" {
+  source      = "./modules/loadbalancer"
+  rg_name     = module.resource_group.rg_name
+  rg_location = module.resource_group.rg_location
 }
 
 module "resource_group" {
